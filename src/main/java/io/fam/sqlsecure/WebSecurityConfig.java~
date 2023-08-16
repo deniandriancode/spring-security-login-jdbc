@@ -1,0 +1,18 @@
+package io.fam.sqlsecure;
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	http
+	    .authorizeHttpRequests((requests) -> requests
+				   .requestMatchers("/").permiAll()
+				   )
+	    .logout((logout) -> logout.permitAll()
+		    );
+	return http.build();
+    }
+    
+}
